@@ -6,7 +6,7 @@ from .constants import *
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
+    email = models.EmailField(null=True, blank=True)
     username = models.CharField(max_length=45)
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
     date_of_birth = models.DateField(null=True)

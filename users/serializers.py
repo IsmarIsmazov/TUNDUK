@@ -8,7 +8,7 @@ from .models import CustomUser
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ("id", "email", "username", "user_type", "date_of_birth", "is_staff", "verify_code", "is_active")
+        fields = ("id", "email", "username", "password", "user_type", "date_of_birth", "is_staff", "verify_code", "is_active")
 
 
 class RefreshTokenSerializer(serializers.Serializer):
@@ -43,14 +43,14 @@ class VerifySerializer(serializers.Serializer):
 
 
 class LoginSerializer(serializers.Serializer):
-    email = serializers.EmailField()
+    username = serializers.CharField(write_only=True)
     password = serializers.CharField(write_only=True)
     access_token = serializers.CharField(read_only=True)
     refresh_token = serializers.CharField(read_only=True)
 
     class Meta:
         model = CustomUser
-        fields = ['email', 'password', 'refresh_token', 'access_token']
+        fields = ['username', 'password', 'refresh_token', 'access_token']
         extra_kwargs = {'password': {'write_only': True},
                         'refresh_token': {'read_only': True},
                         'access_token': {'read_only': True}}

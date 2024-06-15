@@ -28,7 +28,7 @@ class SignUpView(generics.CreateAPIView):
     serializer_class = SignUpSerializer
 
     def post(self, request, *args, **kwargs):
-        return RegisterService.create_user(self.serializer_class(data=request.data), request)
+        return RegisterService.create_user(self.serializer_class(data=request.data))
 
 
 class VerifyOTP(APIView):

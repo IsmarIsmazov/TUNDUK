@@ -17,10 +17,9 @@ from .tokens import confirmation_code, recovery_code
 
 class RegisterService:
     @staticmethod
-    def create_user(serializer, request):
+    def create_user(serializer ):
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        send_email_confirmation(user.email)
+        serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -106,7 +105,7 @@ class PasswordResetNewPassword:
 
 def login_user(serializer):
     user = authenticate(
-        email=serializer.validated_data["email"],
+        username=serializer.validated_data["username"],
         password=serializer.validated_data["password"]
     )
 
