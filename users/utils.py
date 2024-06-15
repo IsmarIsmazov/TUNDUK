@@ -17,7 +17,7 @@ from .tokens import confirmation_code, recovery_code
 
 class RegisterService:
     @staticmethod
-    def create_user(serializer ):
+    def create_user(serializer):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -104,17 +104,13 @@ class PasswordResetNewPassword:
 
 
 def login_user(serializer):
-    user = authenticate(
-        username=serializer.validated_data["username"],
-        password=serializer.validated_data["password"]
-    )
-
-    if user is not None:
+    user = CustomUser.objects.get(username=serializer.validated_data["username"])
+    if user.check_password(serializer.validated_data["password"]):
         tokens = create_jwt_pair_for_user(user)
         response = {"message": "Login Successful", "tokens": tokens}
         return Response(data=response, status=status.HTTP_200_OK)
     else:
         return Response(
-            data={"message": "Invalid email or password"},
+            data={"message": "Invalid username or password"},
             status=status.HTTP_401_UNAUTHORIZED
         )
