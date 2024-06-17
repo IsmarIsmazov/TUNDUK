@@ -8,7 +8,9 @@ from .models import CustomUser
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ("id", "email", "username", "password", "user_type", "date_of_birth", "is_staff", "verify_code", "is_active")
+        fields = ("id", "email", "username", "password", "user_type",
+                  "date_of_birth", "is_staff",
+                  "is_active", "code_user", "class_user")
 
 
 class RefreshTokenSerializer(serializers.Serializer):
