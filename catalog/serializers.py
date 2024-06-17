@@ -16,7 +16,7 @@ class ServicesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Services
-        fields = ('id', 'subsystem', 'title', 'date_register', 'description', 'code_service', 'status')
+        fields = ('id', 'subsystem', 'title', 'date_register', 'description', 'code_service', 'status', 'user')
 
 
 class SecurityServersSerializer(serializers.ModelSerializer):
