@@ -10,7 +10,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ("id", "email", "username", "password", "user_type",
                   "date_of_birth", "is_staff",
-                  "is_active", "code_user", "class_user")
+                  "is_active", "code_user", "class_user", "phone_number")
 
 
 class RefreshTokenSerializer(serializers.Serializer):

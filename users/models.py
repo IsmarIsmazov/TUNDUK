@@ -16,7 +16,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     code_user = models.IntegerField(default=0)
     class_user = models.CharField(max_length=50)
-
+    code_server = models.CharField(max_length=255, null=True, blank=True)
 
     objects = CustomUserManager()
 
