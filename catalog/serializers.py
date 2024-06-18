@@ -13,7 +13,7 @@ class SubSystemSerializer(serializers.ModelSerializer):
 
 class ServicesSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer()
-
+    subsystem = SubSystemSerializer()
     class Meta:
         model = Services
         fields = ('id', 'subsystem', 'title', 'date_register', 'description', 'code_service', 'status', 'user')
